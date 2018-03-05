@@ -6,31 +6,30 @@
 //  Copyright © 2018年 moccow. All rights reserved.
 //
 
+// データを読み込むだけのサンプル
+// http://derivecv.tumblr.com/post/12067667202
+
 #include <iostream>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 
-
-int main(int argc, const char * argv[])
+int　main (int argc, char** argv)
 {
-    pcl::PointCloud<pcl::PointXYZ> cloud;
-    // fill in the cloud data
-    cloud.width = 5;
-    cloud.height = 1;
-    cloud.is_dense = false;
-    cloud.points.resize(cloud.width * cloud.height);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
     
-    for (size_t i = 0; i < cloud.points.size(); ++i){
-        cloud.points[i].x = 1024 * rand() / (RAND_MAX + 1.0f);
-        cloud.points[i].y = 1024 * rand() / (RAND_MAX + 1.0f);
-        cloud.points[i].z = 1024 * rand() / (RAND_MAX + 1.0f);
+    if (pcl::io::loadPCDFile<pcl::PointXYZ>("/Users/moccow/SRC/C++/PCLTest/raw_0.pcd", *cloud) == -1) //* load the file
+    {
+        PCL_ERROR ("Couldn't read file test_pcd.pcd \n");
+        return (-1);
     }
+    std::cout << "Loaded "
+    << cloud->width * cloud->height
+    << " data points from raw_0.pcd with the following fields: "
+    << std::endl;
+    for (size_t i = 0; i < cloud->points.size (); ++i)
+        std::cout << "    " << cloud->points[i].x
+        << " "    << cloud->points[i].y
+        << " "    << cloud->points[i].z << std::endl;
     
-    pcl::io::savePCDFileASCII("test_pcd.pcd", cloud);
-    std::cerr << "Saved " << cloud.points.size() << " data points to test_pcd.pcd." << std::endl;
-    
-    for (size_t i = 0; i < cloud.points.size(); ++i)
-        std::cerr << "   " << cloud.points[i].x << " " << cloud.points[i].y << " " << cloud.points[i].z << std::endl;
-    
-    return 0;
+    return (0);
 }
