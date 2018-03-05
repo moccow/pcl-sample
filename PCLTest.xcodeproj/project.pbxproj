@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		08BF4CCB204CDD2700A2974C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BF4CCA204CDD2700A2974C /* main.cpp */; };
+		08C12819204CE28D004845A9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C12818204CE28D004845A9 /* OpenGL.framework */; };
+		08C1281B204CE297004845A9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C1281A204CE297004845A9 /* Cocoa.framework */; };
+		08C1281D204CE2A3004845A9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C1281C204CE2A3004845A9 /* IOKit.framework */; };
+		08C1281F204CE2B7004845A9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C1281E204CE2B7004845A9 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		08BF4CC7204CDD2700A2974C /* PCLTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PCLTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08BF4CCA204CDD2700A2974C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		08C12818204CE28D004845A9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		08C1281A204CE297004845A9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		08C1281C204CE2A3004845A9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		08C1281E204CE2B7004845A9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +40,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08C1281F204CE2B7004845A9 /* libz.tbd in Frameworks */,
+				08C1281D204CE2A3004845A9 /* IOKit.framework in Frameworks */,
+				08C1281B204CE297004845A9 /* Cocoa.framework in Frameworks */,
+				08C12819204CE28D004845A9 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +55,7 @@
 			children = (
 				08BF4CC9204CDD2700A2974C /* PCLTest */,
 				08BF4CC8204CDD2700A2974C /* Products */,
+				08C12817204CE28D004845A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +73,17 @@
 				08BF4CCA204CDD2700A2974C /* main.cpp */,
 			);
 			path = PCLTest;
+			sourceTree = "<group>";
+		};
+		08C12817204CE28D004845A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08C1281E204CE2B7004845A9 /* libz.tbd */,
+				08C1281C204CE2A3004845A9 /* IOKit.framework */,
+				08C1281A204CE297004845A9 /* Cocoa.framework */,
+				08C12818204CE28D004845A9 /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +257,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/include/pcl-1.8",
+					/usr/local/include/eigen3,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/Cellar/vtk/8.1.0/lib,
+					/usr/local/Cellar/boost/1.66.0/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lpcl_common",
+					"-lpcl_io",
+					"-lboost_thread-mt",
+					"-lboost_system-mt",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -241,6 +281,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/include/pcl-1.8",
+					/usr/local/include/eigen3,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/Cellar/vtk/8.1.0/lib,
+					/usr/local/Cellar/boost/1.66.0/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lpcl_common",
+					"-lpcl_io",
+					"-lboost_thread-mt",
+					"-lboost_system-mt",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
