@@ -6,6 +6,12 @@
 //  Copyright © 2018年 moccow. All rights reserved.
 //
 
+///////////////////////////////////////////////////////////////
+// PASSTHROUGH FILTERのサンプル
+// http://derivecv.tumblr.com/post/13005729408
+///////////////////////////////////////////////////////////////
+
+
 #include <iostream>
 #include <pcl/point_types.h>
 #include <pcl/filters/passthrough.h>
