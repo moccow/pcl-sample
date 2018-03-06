@@ -270,6 +270,7 @@
 				OTHER_LDFLAGS = (
 					"-lpcl_common",
 					"-lpcl_io",
+					"-lpcl_filters",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
 				);
@@ -294,6 +295,7 @@
 				OTHER_LDFLAGS = (
 					"-lpcl_common",
 					"-lpcl_io",
+					"-lpcl_filters",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
 				);
