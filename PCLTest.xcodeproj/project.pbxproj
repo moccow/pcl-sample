@@ -279,6 +279,10 @@
 					"-lvtkRenderingCore-8.1",
 					"-lvtkCommonExecutionModel-8.1",
 					"-lvtkFiltersSources-8.1",
+					"-lvtkCommonDataModel-8.1",
+					"-lvtkCommonMath-8.1",
+					"-lpcl_search",
+					"-lpcl_features",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -310,6 +314,10 @@
 					"-lvtkRenderingCore-8.1",
 					"-lvtkCommonExecutionModel-8.1",
 					"-lvtkFiltersSources-8.1",
+					"-lvtkCommonDataModel-8.1",
+					"-lvtkCommonMath-8.1",
+					"-lpcl_search",
+					"-lpcl_features",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
