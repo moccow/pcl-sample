@@ -272,6 +272,12 @@
 					"-lpcl_io",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lpcl_visualization",
+					"-lvtkCommonCore-8.1",
+					"-lvtkRenderingLOD-8.1",
+					"-lvtkRenderingCore-8.1",
+					"-lvtkCommonExecutionModel-8.1",
+					"-lvtkFiltersSources-8.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -296,6 +302,12 @@
 					"-lpcl_io",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lpcl_visualization",
+					"-lvtkCommonCore-8.1",
+					"-lvtkRenderingLOD-8.1",
+					"-lvtkRenderingCore-8.1",
+					"-lvtkCommonExecutionModel-8.1",
+					"-lvtkFiltersSources-8.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
