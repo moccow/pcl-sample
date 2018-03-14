@@ -261,6 +261,7 @@
 					"/usr/local/include/pcl-1.8",
 					/usr/local/include/eigen3,
 					/usr/local/include,
+					"/usr/local/Cellar/vtk/8.1.0/include/vtk-8.1",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -291,6 +292,7 @@
 					"/usr/local/include/pcl-1.8",
 					/usr/local/include/eigen3,
 					/usr/local/include,
+					"/usr/local/Cellar/vtk/8.1.0/include/vtk-8.1",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
