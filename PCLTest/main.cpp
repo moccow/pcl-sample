@@ -6,8 +6,36 @@
 //  Copyright © 2018年 moccow. All rights reserved.
 //
 
-// データを読み込むだけのサンプル
-// http://derivecv.tumblr.com/post/12067667202
+
+/************************************************************************************
+ * データを読み込むだけのサンプル
+ * http://derivecv.tumblr.com/post/12067667202
+ *
+ * データは以下からダウンロード
+ * http://www.pointclouds.org/assets/files/presentations/IROS2011-PCL-tutorial-data.zip
+ * ここにあるpcdファイルを使用
+ *
+ ***********************************************************************************/
+
+/************************************************************************************
+ * 設定項目
+ ************************************************************************************
+ * [Header Search Paths]
+ * /usr/local/include/pcl-1.8
+ * /usr/local/include/eigen3
+ * /usr/local/include
+ ************************************************************************************
+ * [Library Search Paths]
+ * /usr/local/lib
+ * /usr/local/Cellar/vtk/8.1.0/lib
+ * /usr/local/Cellar/boost/1.66.0/lib
+ ************************************************************************************
+ * [Other Linker Flags]
+ * -lpcl_common
+ * -lpcl_io
+ * -lboost_thread-mt
+ * -lboost_system-mt
+ ***********************************************************************************/
 
 #include <iostream>
 #include <pcl/io/pcd_io.h>
@@ -17,7 +45,7 @@ int　main (int argc, char** argv)
 {
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
     
-    if (pcl::io::loadPCDFile<pcl::PointXYZ>("/Users/moccow/SRC/C++/PCLTest/milk_cartoon_all_small_clorox.pcd", *cloud) == -1) //* load the file
+    if (pcl::io::loadPCDFile<pcl::PointXYZ>("データのパス", *cloud) == -1) //* load the file
     {
         PCL_ERROR ("Couldn't read file test_pcd.pcd \n");
         return (-1);
