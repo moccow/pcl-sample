@@ -6,6 +6,52 @@
 //  Copyright © 2018年 moccow. All rights reserved.
 //
 
+
+/************************************************************************************
+ * 3D Object Recognition based on Correspondence Grouping
+ * http://pointclouds.org/documentation/tutorials/correspondence_grouping.php
+ ***********************************************************************************/
+
+/************************************************************************************
+ * XcodeでCommand Line Tool実行時にコマンドライン引数を渡す
+ * http://d.hatena.ne.jp/ys4145/20120615/p1
+ ***********************************************************************************/
+
+/************************************************************************************
+ * 設定項目
+ ************************************************************************************
+ * [Header Search Paths]
+ * /usr/local/include/pcl-1.8
+ * /usr/local/include/eigen3
+ * /usr/local/include
+ * /usr/local/Cellar/vtk/8.1.0/include/vtk-8.1
+ ************************************************************************************
+ * [Library Search Paths]
+ * /usr/local/lib
+ * /usr/local/Cellar/vtk/8.1.0/lib
+ * /usr/local/Cellar/boost/1.66.0/lib
+ ************************************************************************************
+ * [Other Linker Flags]
+ * -lpcl_common
+ * -lpcl_io
+ * -lpcl_search
+ * -lpcl_features
+ * -lpcl_visualization
+ * -lpcl_recognition
+ * -lpcl_filters
+ * -lboost_thread-mt
+ * -lboost_system-mt
+ * -lvtkCommonCore-8.1
+ * -lvtkRenderingLOD-8.1
+ * -lvtkRenderingCore-8.1
+ * -lvtkCommonExecutionModel-8.1
+ * -lvtkFiltersSources-8.1
+ * -lvtkCommonDataModel-8.1
+ * -lvtkCommonMath-8.1
+ * -lflann
+ ***********************************************************************************/
+
+
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_cloud.h>
 #include <pcl/correspondence.h>
