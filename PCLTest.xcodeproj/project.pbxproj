@@ -261,6 +261,7 @@
 					"/usr/local/include/pcl-1.8",
 					/usr/local/include/eigen3,
 					/usr/local/include,
+					"/usr/local/Cellar/vtk/8.1.0/include/vtk-8.1",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -270,8 +271,21 @@
 				OTHER_LDFLAGS = (
 					"-lpcl_common",
 					"-lpcl_io",
+					"-lpcl_features",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lpcl_visualization",
+					"-lvtkCommonCore-8.1",
+					"-lvtkRenderingLOD-8.1",
+					"-lvtkRenderingCore-8.1",
+					"-lvtkCommonExecutionModel-8.1",
+					"-lvtkFiltersSources-8.1",
+					"-lflann",
+					"-lvtkCommonDataModel-8.1",
+					"-lvtkCommonMath-8.1",
+					"-lpcl_search",
+					"-lpcl_recognition",
+					"-lpcl_filters",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -285,6 +299,7 @@
 					"/usr/local/include/pcl-1.8",
 					/usr/local/include/eigen3,
 					/usr/local/include,
+					"/usr/local/Cellar/vtk/8.1.0/include/vtk-8.1",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -294,8 +309,21 @@
 				OTHER_LDFLAGS = (
 					"-lpcl_common",
 					"-lpcl_io",
+					"-lpcl_features",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lpcl_visualization",
+					"-lvtkCommonCore-8.1",
+					"-lvtkRenderingLOD-8.1",
+					"-lvtkRenderingCore-8.1",
+					"-lvtkCommonExecutionModel-8.1",
+					"-lvtkFiltersSources-8.1",
+					"-lflann",
+					"-lvtkCommonDataModel-8.1",
+					"-lvtkCommonMath-8.1",
+					"-lpcl_search",
+					"-lpcl_recognition",
+					"-lpcl_filters",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
