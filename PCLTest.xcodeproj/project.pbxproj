@@ -272,6 +272,7 @@
 					"-lpcl_io",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lpcl_octree",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -296,6 +297,7 @@
 					"-lpcl_io",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lpcl_octree",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

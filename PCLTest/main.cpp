@@ -6,31 +6,103 @@
 //  Copyright © 2018年 moccow. All rights reserved.
 //
 
+
+
+/************************************************************************************
+ * Spatial change detection on unorganized point cloud data
+ * http://pointclouds.org/documentation/tutorials/octree_change.php
+ ***********************************************************************************/
+
+/************************************************************************************
+ * 設定項目
+ ************************************************************************************
+ * [Header Search Paths]
+ * /usr/local/include/pcl-1.8
+ * /usr/local/include/eigen3
+ * /usr/local/include
+ ************************************************************************************
+ * [Library Search Paths]
+ * /usr/local/lib
+ * /usr/local/Cellar/vtk/8.1.0/lib
+ * /usr/local/Cellar/boost/1.66.0/lib
+ ************************************************************************************
+ * [Other Linker Flags]
+ * -lpcl_common
+ * -lpcl_io
+ * -lpcl_octree
+ * -lboost_thread-mt
+ * -lboost_system-mt
+ ***********************************************************************************/
+
+
+#include <pcl/point_cloud.h>
+#include <pcl/octree/octree_pointcloud_changedetector.h>
+
 #include <iostream>
-#include <pcl/io/pcd_io.h>
-#include <pcl/point_types.h>
+#include <vector>
+#include <ctime>
 
-
-int main(int argc, const char * argv[])
+int
+main (int argc, char** argv)
 {
-    pcl::PointCloud<pcl::PointXYZ> cloud;
-    // fill in the cloud data
-    cloud.width = 5;
-    cloud.height = 1;
-    cloud.is_dense = false;
-    cloud.points.resize(cloud.width * cloud.height);
+    srand ((unsigned int) time (NULL));
     
-    for (size_t i = 0; i < cloud.points.size(); ++i){
-        cloud.points[i].x = 1024 * rand() / (RAND_MAX + 1.0f);
-        cloud.points[i].y = 1024 * rand() / (RAND_MAX + 1.0f);
-        cloud.points[i].z = 1024 * rand() / (RAND_MAX + 1.0f);
+    // Octree resolution - side length of octree voxels
+    float resolution = 32.0f;
+    
+    // Instantiate octree-based point cloud change detection class
+    pcl::octree::OctreePointCloudChangeDetector<pcl::PointXYZ> octree (resolution);
+    
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloudA (new pcl::PointCloud<pcl::PointXYZ> );
+    
+    // Generate pointcloud data for cloudA
+    cloudA->width = 128;
+    cloudA->height = 1;
+    cloudA->points.resize (cloudA->width * cloudA->height);
+    
+    for (size_t i = 0; i < cloudA->points.size (); ++i)
+    {
+        cloudA->points[i].x = 64.0f * rand () / (RAND_MAX + 1.0f);
+        cloudA->points[i].y = 64.0f * rand () / (RAND_MAX + 1.0f);
+        cloudA->points[i].z = 64.0f * rand () / (RAND_MAX + 1.0f);
     }
     
-    pcl::io::savePCDFileASCII("test_pcd.pcd", cloud);
-    std::cerr << "Saved " << cloud.points.size() << " data points to test_pcd.pcd." << std::endl;
+    // Add points from cloudA to octree
+    octree.setInputCloud (cloudA);
+    octree.addPointsFromInputCloud ();
     
-    for (size_t i = 0; i < cloud.points.size(); ++i)
-        std::cerr << "   " << cloud.points[i].x << " " << cloud.points[i].y << " " << cloud.points[i].z << std::endl;
+    // Switch octree buffers: This resets octree but keeps previous tree structure in memory.
+    octree.switchBuffers ();
     
-    return 0;
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloudB (new pcl::PointCloud<pcl::PointXYZ> );
+    
+    // Generate pointcloud data for cloudB
+    cloudB->width = 128;
+    cloudB->height = 1;
+    cloudB->points.resize (cloudB->width * cloudB->height);
+    
+    for (size_t i = 0; i < cloudB->points.size (); ++i)
+    {
+        cloudB->points[i].x = 64.0f * rand () / (RAND_MAX + 1.0f);
+        cloudB->points[i].y = 64.0f * rand () / (RAND_MAX + 1.0f);
+        cloudB->points[i].z = 64.0f * rand () / (RAND_MAX + 1.0f);
+    }
+    
+    // Add points from cloudB to octree
+    octree.setInputCloud (cloudB);
+    octree.addPointsFromInputCloud ();
+    
+    std::vector<int> newPointIdxVector;
+    
+    // Get vector of point indices from octree voxels which did not exist in previous buffer
+    octree.getPointIndicesFromNewVoxels (newPointIdxVector);
+    
+    // Output points
+    std::cout << "Output from getPointIndicesFromNewVoxels:" << std::endl;
+    for (size_t i = 0; i < newPointIdxVector.size (); ++i)
+        std::cout << i << "# Index:" << newPointIdxVector[i]
+        << "  Point:" << cloudB->points[newPointIdxVector[i]].x << " "
+        << cloudB->points[newPointIdxVector[i]].y << " "
+        << cloudB->points[newPointIdxVector[i]].z << std::endl;
+    
 }
